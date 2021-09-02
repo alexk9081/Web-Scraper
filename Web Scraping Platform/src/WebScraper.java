@@ -17,7 +17,10 @@ public class WebScraper {
 			Elements pictureClass = null;
 			Elements googlePicture = null;
 			
+			//Connect to Google.com
 			doc = Jsoup.connect(source).get();
+			
+			//Navigate to get picture source
 			pictureClass = doc.select("div[class=\"k1zIA kKvsb\"]");
 			googlePicture = pictureClass.select("img#hplogo");
 			pictureSource = googlePicture.attr("src");
@@ -26,9 +29,9 @@ public class WebScraper {
 			e.printStackTrace();
 		}
 		
+		//Open picture source on desktop browser
 		try {
 		    Desktop.getDesktop().browse(new URL(source + pictureSource).toURI());
 		} catch (Exception e) {}
 	}
-
 }
