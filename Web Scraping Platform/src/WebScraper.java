@@ -15,15 +15,13 @@ public class WebScraper {
 		try {
 			Document doc = null;
 			Elements pictureClass = null;
-			Elements googlePicture = null;
 			
 			//Connect to Google.com
 			doc = Jsoup.connect(source).get();
 			
 			//Navigate to get picture source
-			pictureClass = doc.select("div[class=\"k1zIA kKvsb\"]");
-			googlePicture = pictureClass.select("img#hplogo");
-			pictureSource = googlePicture.attr("src");
+			pictureClass = doc.select("img:not([aria-hidden])");
+			pictureSource = pictureClass.attr("src");
 		} catch (IOException e) {
 			System.out.print("Connection Error.");
 			e.printStackTrace();
